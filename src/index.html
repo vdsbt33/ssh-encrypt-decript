@@ -1,0 +1,130 @@
+<html>
+<head>
+
+    <title>Rest Client</title>   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.min.css">
+
+</head>
+
+<body>
+    <style>
+        textarea {
+            height: auto;
+        }
+
+        .w-100 {
+            width: 100%;
+        }
+    </style>
+
+    <div class="container">
+        <h2>Encryption</h2>
+        <div class="row">
+            <div class="column column-20">
+                <label for="enc-type">Encryption Type *</label>
+                <select id="enc-type">
+                    <option value="ed25519">ed25519</option>
+                    <option value="rsa2048">rsa2048</option>
+                </select>
+            </div>
+
+            <div class="column">
+                <label for="pub-key">Public Key *</label>
+                <input id="pub-key" type="text" />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="column">
+                <label for="enc-data">Data *</label>
+                <textarea id="enc-data" rows="3"></textarea>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="column">
+                <label for="enc-result">Result</label>
+                <textarea id="enc-result" rows="3"></textarea>
+            </div>
+        </div>
+
+        <!-- Encrypt actions -->
+        <div class="row">
+            <div class="column column-20 column-offset-80">
+                <button class="button w-100" onclick="encrypt()">Encrypt</button>
+            </div>
+        </div>
+
+        <hr/>
+
+        <h2>Decryption</h2>
+        <div class="row">
+            <div class="column column-20">
+                <label for="dec-type">Decryption Type *</label>
+                <select id="dec-type">
+                    <option value="ed25519">ed25519</option>
+                    <option value="rsa2048">rsa2048</option>
+                </select>
+            </div>
+            <div class="column">
+                <label for="pvt-key">Private Key *</label>
+                <textarea id="pvt-key" rows="3"></textarea>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="column column-80 column-offset-20">
+                <label for="pvt-secret">Private Key Secret</label>
+                <input type="password" id="pvt-secret" />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="column">
+                <label for="dec-data">Data *</label>
+                <textarea id="dec-data" rows="3"></textarea>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="column">
+                <label for="dec-result">Result</label>
+                <textarea id="dec-result" rows="3"></textarea>
+            </div>
+        </div>
+
+        <!-- Decrypt actions -->
+        <div class="row">
+            <div class="column column-20 column-offset-80">
+                <button class="button w-100" onclick="decrypt()">Decrypt</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function encrypt() {
+            let f_enc_type = document.getElementById("enc-type");
+            let enc_type = f_enc_type.value;
+
+            let f_pub_key = document.getElementById("pub-key");
+            let pub_key = f_pub_key.value;
+
+            let f_enc_data = document.getElementById("enc-data");
+            let enc_data = f_enc_data.value;
+
+            if (enc_type.length === 0)
+                alert('Encryption Type is required to encrypt.');
+            else if (pub_key.length === 0)
+                alert('Public Key is required to encrypt.');
+            else if (enc_data.length === 0)
+                alert('Encryption Data is required to encrypt.');
+
+            let f_enc_result = document.getElementById("enc-result");
+        }
+
+        function decrypt() {
+
+        }
+    </script>
+</body>
+</html>

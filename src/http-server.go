@@ -8,8 +8,21 @@ import (
     "os"
 )
 
+
 func serveIndex(w http.ResponseWriter, r *http.Request) {
-    http.ServeFile(w, r, "./src/static/index.html")
+    allowedFiles := []string { "/index.html", "/style.css", "/script.js" }
+
+    if len(r.URL.Path) <= 1 {
+        http.ServeFile(w, r, "./src/static/index.html")
+        return
+    }
+
+    for _, filePath := range allowedFiles {
+        if r.URL.Path == filePath {
+            http.ServeFile(w, r, "./src/static" + filePath)
+            return
+        }
+    }
 }
 
 func serveHttp() {
